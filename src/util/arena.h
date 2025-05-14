@@ -5,7 +5,7 @@
 #include <cstddef>
 #include <vector>
 
-namespace kvdb {
+namespace leveldb {
 
 // const method do not need external sync
 
@@ -13,6 +13,7 @@ class Arena {
 public:
   Arena();
 
+  // no coping
   Arena(const Arena &) = delete;
   Arena &operator=(const Arena &) = delete;
 
@@ -27,7 +28,7 @@ public:
   // Returns an estimate of the total memory usage of data allocated
   // by the arena.
   size_t MemoryUsage() const {
-    return memory_usage_.load(std::memory_order_relaxed);
+    return blocks_memory_ + blocks_.capacity() * sizeof(char *);
   }
 
 private:
@@ -41,14 +42,14 @@ private:
   // Array of new[] allocated memory blocks
   std::vector<char *> blocks_;
 
-  // Total memory usage of the arena.
-  //
-  // TODO(costan): This member is accessed via atomics, but the others are
-  //               accessed without any locking. Is this OK?
-  std::atomic<size_t> memory_usage_;
+  // Bytes of memory in blocks allocated so far
+  size_t blocks_memory_;
 };
 
 inline char *Arena::Allocate(size_t bytes) {
+  // The semantics of what to return are a bit messy if we allow
+  // 0-byte allocations, so we disallow them here (we don't need
+  // them for our internal use).
   assert(bytes > 0);
   if (bytes <= alloc_bytes_remaining_) {
     char *result = alloc_ptr_;

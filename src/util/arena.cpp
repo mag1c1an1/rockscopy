@@ -1,12 +1,12 @@
-#include "util/arena.h"
 #include <atomic>
 #include <cstddef>
 
-namespace kvdb {
-constexpr int BLOCK_SIZE = 4096;
+#include "util/arena.h"
+namespace leveldb {
+constexpr int kBlockSize = 4096;
 
 Arena::Arena()
-    : alloc_ptr_(nullptr), alloc_bytes_remaining_(0), memory_usage_(0) {}
+    : alloc_ptr_(nullptr), alloc_bytes_remaining_(0), blocks_memory_(0) {}
 
 Arena::~Arena() {
   for (size_t i = 0; i < blocks_.size(); i++) {
@@ -15,7 +15,7 @@ Arena::~Arena() {
 }
 
 char *Arena::AllocateFallback(size_t bytes) {
-  if (bytes > BLOCK_SIZE / 4) {
+  if (bytes > kBlockSize / 4) {
     // Object is more than a quarter of our block size.  Allocate it separately
     // to avoid wasting too much space in leftover bytes.
     char *result = AllocateNewBlock(bytes);
@@ -23,8 +23,8 @@ char *Arena::AllocateFallback(size_t bytes) {
   }
 
   // We waste the remaining space in the current block.
-  alloc_ptr_ = AllocateNewBlock(BLOCK_SIZE);
-  alloc_bytes_remaining_ = BLOCK_SIZE;
+  alloc_ptr_ = AllocateNewBlock(kBlockSize);
+  alloc_bytes_remaining_ = kBlockSize;
 
   char *result = alloc_ptr_;
   alloc_ptr_ += bytes;
@@ -33,8 +33,8 @@ char *Arena::AllocateFallback(size_t bytes) {
 }
 char *Arena::AllocateNewBlock(size_t bytes) {
   char *result = new char[bytes];
+  blocks_memory_ += bytes;
   blocks_.push_back(result);
-  memory_usage_.fetch_add(bytes + sizeof(char *), std::memory_order_relaxed);
   return result;
 }
 
@@ -58,4 +58,4 @@ char *Arena::AllocateAligned(size_t bytes) {
   return result;
 }
 
-} // namespace kvdb
+} // namespace leveldb
