@@ -1,7 +1,8 @@
-#include <atomic>
-#include <cstddef>
-
 #include "util/arena.h"
+
+#include <cstddef>
+#include <cstdint>
+
 namespace leveldb {
 constexpr int kBlockSize = 4096;
 
@@ -9,9 +10,7 @@ Arena::Arena()
     : alloc_ptr_(nullptr), alloc_bytes_remaining_(0), blocks_memory_(0) {}
 
 Arena::~Arena() {
-  for (size_t i = 0; i < blocks_.size(); i++) {
-    delete[] blocks_[i];
-  }
+  for (size_t i = 0; i < blocks_.size(); i++) { delete[] blocks_[i]; }
 }
 
 char *Arena::AllocateFallback(size_t bytes) {
@@ -58,4 +57,4 @@ char *Arena::AllocateAligned(size_t bytes) {
   return result;
 }
 
-} // namespace leveldb
+}  // namespace leveldb

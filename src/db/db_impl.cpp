@@ -18,4 +18,4 @@ Status DB::Put(const WriteOptions &opt, const Slice &key, const Slice &value) {
 
 Status DBImpl::Write(const WriteOptions &options, WriteBatch *my_batch) {}
 
-} // namespace leveldb
+}  // namespace leveldb

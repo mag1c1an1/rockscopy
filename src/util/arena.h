@@ -1,6 +1,5 @@
 #pragma once
 
-#include <atomic>
 #include <cassert>
 #include <cstddef>
 #include <vector>
@@ -10,7 +9,7 @@ namespace leveldb {
 // const method do not need external sync
 
 class Arena {
-public:
+ public:
   Arena();
 
   // no coping
@@ -31,7 +30,7 @@ public:
     return blocks_memory_ + blocks_.capacity() * sizeof(char *);
   }
 
-private:
+ private:
   char *AllocateFallback(size_t bytes);
   char *AllocateNewBlock(size_t block_bytes);
 
@@ -60,4 +59,4 @@ inline char *Arena::Allocate(size_t bytes) {
   return AllocateFallback(bytes);
 }
 
-} // namespace kvdb
+}  // namespace leveldb

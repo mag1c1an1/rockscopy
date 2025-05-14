@@ -2,7 +2,7 @@ add_rules("mode.debug", "mode.release")
 
 set_languages("c++20")
 
-add_requires("gtest")
+add_requires("gtest", {configs = {main = true, gmock = true}})
 
 local src_files = os.files("src/**.cpp")
 
@@ -16,7 +16,9 @@ for i,f in ipairs(src_files) do
             set_kind("binary")
             add_packages("gtest")
             add_includedirs("src", "include")
-            add_files(file)
+            add_links("gtest_main")
+            add_files(f)
+            add_deps("rocksdb")
             set_group("tests")
 
     end
@@ -28,6 +30,7 @@ target("rocksdb")
     add_files(src_files)
     add_includedirs("include", {pulic = true})
     add_includedirs("src")
+
 includes("tests")
 
 --

@@ -157,10 +157,8 @@ const char *GetLengthPrefixedSlice(const char *p, const char *limit,
                                    Slice *result) {
   uint32_t len;
   p = GetVarint32Ptr(p, limit, &len);
-  if (p == nullptr)
-    return nullptr;
-  if (p + len > limit)
-    return nullptr;
+  if (p == nullptr) return nullptr;
+  if (p + len > limit) return nullptr;
   *result = Slice(p, len);
   return p + len;
 }
@@ -190,7 +188,7 @@ void BitStreamPutInt(char *dst, size_t dstlen, size_t offset, uint32_t bits,
 #ifndef NDEBUG
   // Store truncated value.
   uint64_t origValue =
-      (bits < 64) ? (value & (((uint64_t)1 << bits) - 1)) : value;
+      (bits < 64) ? (value & (((uint64_t) 1 << bits) - 1)) : value;
   uint32_t origBits = bits;
 #endif
 
@@ -227,7 +225,7 @@ uint64_t BitStreamGetInt(const char *src, size_t srclen, size_t offset,
     size_t bitsToGet = std::min<size_t>(bits, 8 - bitOffset);
     unsigned char mask = ((1 << bitsToGet) - 1);
 
-    result += (uint64_t)((ptr[byteOffset] >> bitOffset) & mask) << shift;
+    result += (uint64_t) ((ptr[byteOffset] >> bitOffset) & mask) << shift;
 
     shift += bitsToGet;
     byteOffset += 1;
@@ -261,7 +259,7 @@ void BitStreamPutInt(std::string *dst, size_t offset, uint32_t bits,
   }
 
   // Do the check here too as we are working with a buffer.
-  assert(((bits < 64) ? (value & (((uint64_t)1 << bits) - 1)) : value) ==
+  assert(((bits < 64) ? (value & (((uint64_t) 1 << bits) - 1)) : value) ==
          BitStreamGetInt(dst, offset, bits));
 }
 
@@ -273,4 +271,4 @@ uint64_t BitStreamGetInt(const Slice *src, size_t offset, uint32_t bits) {
   return BitStreamGetInt(src->data(), src->size(), offset, bits);
 }
 
-} // namespace leveldb
+}  // namespace leveldb

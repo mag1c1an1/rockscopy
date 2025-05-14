@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 #include "hash.h"
+
 #include "coding.h"
 
 namespace leveldb {
@@ -25,19 +26,19 @@ uint32_t Hash(const char *data, size_t n, uint32_t seed) {
 
   // Pick up remaining bytes
   switch (limit - data) {
-  case 3:
-    h += data[2] << 16;
-    // fall through
-  case 2:
-    h += data[1] << 8;
-    // fall through
-  case 1:
-    h += data[0];
-    h *= m;
-    h ^= (h >> r);
-    break;
+    case 3:
+      h += data[2] << 16;
+      // fall through
+    case 2:
+      h += data[1] << 8;
+      // fall through
+    case 1:
+      h += data[0];
+      h *= m;
+      h ^= (h >> r);
+      break;
   }
   return h;
 }
 
-} // namespace leveldb
+}  // namespace leveldb
