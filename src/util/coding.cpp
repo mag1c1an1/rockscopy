@@ -28,10 +28,11 @@ void PutFixed64(std::string *dst, uint64_t value) {
   dst->append(buf, sizeof(buf));
 }
 
+// 32位变长整数编码
 char *EncodeVarint32(char *dst, uint32_t v) {
   // Operate on characters as unsigneds
   unsigned char *ptr = reinterpret_cast<unsigned char *>(dst);
-  static const int B = 128;
+  static constexpr int B = 128;
   if (v < (1 << 7)) {
     *(ptr++) = v;
   } else if (v < (1 << 14)) {

@@ -2,11 +2,33 @@ add_rules("mode.debug", "mode.release")
 
 set_languages("c++20")
 
+add_requires("gtest")
 
-target("db-related")
-    set_kind("binary")
-    add_files("src/**.cpp")
-    add_includedirs("include","src")
+local src_files = os.files("src/**.cpp")
+
+-- local test_files =  {}
+for i,f in ipairs(src_files) do
+    local file_name = path.basename(f)
+    if string.match(file_name, "^test_") ~= nil then
+        table.remove(src_files,i)
+        -- table.append(test_files,f)
+        target(file_name)
+            set_kind("binary")
+            add_packages("gtest")
+            add_includedirs("src", "include")
+            add_files(file)
+            set_group("tests")
+
+    end
+end
+
+
+target("rocksdb")
+    set_kind("static")
+    add_files(src_files)
+    add_includedirs("include", {pulic = true})
+    add_includedirs("src")
+includes("tests")
 
 --
 -- If you want to known more usage about xmake, please see https://xmake.io

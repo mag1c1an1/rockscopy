@@ -1,11 +1,31 @@
 [
 {
   "directory": "/Users/mag1cian/dev/db-related/lsm-db",
-  "arguments": ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang", "-c", "-Qunused-arguments", "-target", "arm64-apple-macos14.2", "-isysroot", "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-std=c++20", "-Iinclude", "-Isrc", "-DNDEBUG", "-o", "build/.objs/db-related/macosx/arm64/release/src/kvdb/skiplist.cpp.o", "src/kvdb/skiplist.cpp"],
-  "file": "src/kvdb/skiplist.cpp"
+  "arguments": ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang", "-c", "-Qunused-arguments", "-target", "arm64-apple-macos15.0", "-isysroot", "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-std=c++20", "-Iinclude", "-Isrc", "-Ibuild/.gens/rocksdb/macosx/arm64/release/platform/windows/idl", "-DNDEBUG", "-o", "build/.objs/rocksdb/macosx/arm64/release/src/util/env_posix.cpp.o", "src/util/env_posix.cpp"],
+  "file": "src/util/env_posix.cpp"
 },
 {
   "directory": "/Users/mag1cian/dev/db-related/lsm-db",
-  "arguments": ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang", "-c", "-Qunused-arguments", "-target", "arm64-apple-macos14.2", "-isysroot", "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-std=c++20", "-Iinclude", "-Isrc", "-DNDEBUG", "-o", "build/.objs/db-related/macosx/arm64/release/src/main.cpp.o", "src/main.cpp"],
-  "file": "src/main.cpp"
+  "arguments": ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang", "-c", "-Qunused-arguments", "-target", "arm64-apple-macos15.0", "-isysroot", "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-std=c++20", "-Iinclude", "-Isrc", "-Ibuild/.gens/rocksdb/macosx/arm64/release/platform/windows/idl", "-DNDEBUG", "-o", "build/.objs/rocksdb/macosx/arm64/release/src/util/coding.cpp.o", "src/util/coding.cpp"],
+  "file": "src/util/coding.cpp"
+},
+{
+  "directory": "/Users/mag1cian/dev/db-related/lsm-db",
+  "arguments": ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang", "-c", "-Qunused-arguments", "-target", "arm64-apple-macos15.0", "-isysroot", "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-std=c++20", "-Iinclude", "-Isrc", "-Ibuild/.gens/rocksdb/macosx/arm64/release/platform/windows/idl", "-DNDEBUG", "-o", "build/.objs/rocksdb/macosx/arm64/release/src/util/arena.cpp.o", "src/util/arena.cpp"],
+  "file": "src/util/arena.cpp"
+},
+{
+  "directory": "/Users/mag1cian/dev/db-related/lsm-db",
+  "arguments": ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang", "-c", "-Qunused-arguments", "-target", "arm64-apple-macos15.0", "-isysroot", "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-std=c++20", "-Iinclude", "-Isrc", "-Ibuild/.gens/rocksdb/macosx/arm64/release/platform/windows/idl", "-DNDEBUG", "-o", "build/.objs/rocksdb/macosx/arm64/release/src/util/hash.cpp.o", "src/util/hash.cpp"],
+  "file": "src/util/hash.cpp"
+},
+{
+  "directory": "/Users/mag1cian/dev/db-related/lsm-db",
+  "arguments": ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang", "-c", "-Qunused-arguments", "-target", "arm64-apple-macos15.0", "-isysroot", "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-std=c++20", "-Iinclude", "-Isrc", "-Ibuild/.gens/rocksdb/macosx/arm64/release/platform/windows/idl", "-DNDEBUG", "-o", "build/.objs/rocksdb/macosx/arm64/release/src/table/block.cpp.o", "src/table/block.cpp"],
+  "file": "src/table/block.cpp"
+},
+{
+  "directory": "/Users/mag1cian/dev/db-related/lsm-db",
+  "arguments": ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang", "-c", "-Qunused-arguments", "-target", "arm64-apple-macos15.0", "-isysroot", "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.sdk", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-std=c++20", "-Iinclude", "-Isrc", "-Ibuild/.gens/rocksdb/macosx/arm64/release/platform/windows/idl", "-DNDEBUG", "-o", "build/.objs/rocksdb/macosx/arm64/release/src/db/db_impl.cpp.o", "src/db/db_impl.cpp"],
+  "file": "src/db/db_impl.cpp"
 }]
